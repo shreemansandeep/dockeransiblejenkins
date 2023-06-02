@@ -31,14 +31,14 @@ pipeline{
                 sh "docker build . -t dockersandheep/$JOB_NAME:${DOCKER_TAG} "
             }
         }
-        /*
+        
         stage('DockerHub Push'){
             steps{
-                withCredentials([string(credentialsId: 'docker-hub', variable: 'dockerHubPwd')]) {
-                    sh "docker login -u kammana -p ${dockerHubPwd}"
+                withCredentials([string(credentialsId: 'DockerHubCred', variable: 'dockerHubPwd')]) {
+                    sh "docker login -u dockersandheep -p ${dockerHubPwd}"
                 }
                 
-                sh "docker push kammana/hariapp:${DOCKER_TAG} "
+                sh "docker push dockersandheep/$JOB_NAME:${DOCKER_TAG}"
             }
         }
         
@@ -46,7 +46,7 @@ pipeline{
             steps{
               ansiblePlaybook credentialsId: 'dev-server', disableHostKeyChecking: true, extras: "-e DOCKER_TAG=${DOCKER_TAG}", installation: 'ansible', inventory: 'dev.inv', playbook: 'deploy-docker.yml'
             }
-        } */
+        } 
     }
 }
 
