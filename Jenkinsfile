@@ -10,7 +10,9 @@ pipeline{
     environment {
       DOCKER_TAG = getVersion()
     }
+    
     stages{
+        
         stage('SCM'){
             steps{
                 git credentialsId: 'GitCred', 
