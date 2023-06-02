@@ -41,18 +41,14 @@ pipeline{
                 sh "docker push dockersandheep/$JOB_NAME:${DOCKER_TAG}"
             }
         }
-        
-        stage('Remove Docker Images') {
-            steps {
-                  sh 'docker rmi -f $(docker images -q)'
-            }
-            }
+       
         
         stage('Docker Deploy'){
             steps{
               ansiblePlaybook credentialsId: 'dev-server', disableHostKeyChecking: true, extras: "-e DOCKER_TAG=${DOCKER_TAG}", installation: 'ansible', inventory: 'dev.inv', playbook: 'deploy-docker.yml'
             }
         } 
+        
     }
 }
 
