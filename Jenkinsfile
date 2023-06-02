@@ -1,16 +1,20 @@
 pipeline{
     agent any
+    
+    /*
     tools {
       maven 'maven3'
     }
+    */
+    
     environment {
       DOCKER_TAG = getVersion()
     }
     stages{
         stage('SCM'){
             steps{
-                git credentialsId: 'github', 
-                    url: 'https://github.com/javahometech/dockeransiblejenkins'
+                git credentialsId: 'GitCred', 
+                    url: 'https://github.com/shreemansandeep/dockeransiblejenkins.git'
             }
         }
         
@@ -22,10 +26,10 @@ pipeline{
         
         stage('Docker Build'){
             steps{
-                sh "docker build . -t kammana/hariapp:${DOCKER_TAG} "
+                sh "docker build . -t dockersandheep/$JOB_NAME:${DOCKER_TAG} "
             }
         }
-        
+        /*
         stage('DockerHub Push'){
             steps{
                 withCredentials([string(credentialsId: 'docker-hub', variable: 'dockerHubPwd')]) {
@@ -40,7 +44,7 @@ pipeline{
             steps{
               ansiblePlaybook credentialsId: 'dev-server', disableHostKeyChecking: true, extras: "-e DOCKER_TAG=${DOCKER_TAG}", installation: 'ansible', inventory: 'dev.inv', playbook: 'deploy-docker.yml'
             }
-        }
+        } */
     }
 }
 
