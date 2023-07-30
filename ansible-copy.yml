@@ -1,8 +1,8 @@
 ---
 - hosts: dev
-  become: True
+  become: true
   tasks:
-    - name: Ansible copy file to a remote server  
-      copy:  
-      src: /root/ansible.txt 
-      dest: /home/ubuntu 
+    - name: Ansible copy file to a remote server
+      copy: null
+      src: /root/ansible.txt
+      dest: /home/ubuntu
