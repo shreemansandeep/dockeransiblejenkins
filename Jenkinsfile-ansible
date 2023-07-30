@@ -4,7 +4,7 @@ pipeline{
     stages{
       stage('Docker Deploy'){
             steps{
-              ansiblePlaybook credentialsId: 'dev-server', disableHostKeyChecking: true, extras: "-e DOCKER_TAG=${DOCKER_TAG}", installation: 'ansible', inventory: 'dev.inv', playbook: 'deploy-docker.yml'
+              ansiblePlaybook credentialsId: 'dev-server', disableHostKeyChecking: true, installation: 'ansible2', inventory: 'dev.inv', playbook: 'ansible-deploy-docker.yml'
             }
         } 
         
