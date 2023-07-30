@@ -2,11 +2,18 @@ pipeline{
     agent any
     
     stages{
+    /*
       stage('Docker Deploy'){
             steps{
               ansiblePlaybook credentialsId: 'dev-server', disableHostKeyChecking: true, installation: 'ansible2', inventory: 'dev.inv', playbook: 'ansible-deploy-docker.yml'
             }
         } 
+*/
+        stage('Ansible copy file remote server'){
+                    steps{
+                      ansiblePlaybook credentialsId: 'dev-server', disableHostKeyChecking: true, installation: 'ansible2', inventory: 'dev.inv', playbook: 'ansible-copy.yml'
+                    }
+                } 
         
     }
 }
