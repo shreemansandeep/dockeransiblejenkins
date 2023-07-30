@@ -4,5 +4,5 @@
   tasks:
     - name: Ansible copy file to a remote server  
       copy:  
-      src: ~/ansible.txt 
+      src: /root/ansible.txt 
       dest: /home/ubuntu 
