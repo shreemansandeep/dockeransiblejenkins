@@ -4,8 +4,8 @@
   tasks:
     - name: Launching the container
       docker_container:
-        name: hariapp
-        image: "dockersandheep/jenkins-ansible:{{DOCKER_TAG}}"
+        name: react-app
+        image: "docker pull dockersandheep/react-pipe:v1.8"
         state: started
         published_ports:
-          - 0.0.0.0:8080:8080
+          - 0.0.0.0:3000:3000
